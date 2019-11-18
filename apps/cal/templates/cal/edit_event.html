@@ -1,0 +1,17 @@
+{% extends 'cal/base.html' %}
+
+{% block title %}
+Event
+{% endblock %}
+
+{% block content %}
+<form method="post" action="/event/edit/{{event.id}}/">
+  {% csrf_token %}
+  {{ form }}
+  <button type="submit" class="btn btn-info right"> Edit </button>
+</form>
+<form method="post" action="/event/delete/{{event.id}}/">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-info right"> Delete </button>
+</form>
+{% endblock %}

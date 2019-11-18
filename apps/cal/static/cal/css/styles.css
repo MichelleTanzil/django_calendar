@@ -1,12 +1,29 @@
-
-.calendar {
-  width: 98%;
-  margin: auto;
-  font-size: 13px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Alata", sans-serif;
 }
 
-.calendar tr, .calendar td {
-  border: 1px solid black;
+body{
+  background-color: #686868; 
+}
+
+.calendar {
+  margin: auto;
+  font-size: 13px;
+  background-color: #3b3a50;
+  color: white;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.calendar th {
+  text-transform: uppercase;
+}
+
+.calendar td {
+  border-radius: 20px;
 }
 
 .calendar th {
@@ -16,17 +33,27 @@
 }
 
 .calendar td {
-  width: 200px;
-  height: 150px;
-  padding: 20px 0px 0px 5px;
+  width: 15%;
+  height: 105px; 
+  padding: 20px 10px 0px 10px;
+  margin-left: 5px;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.calendar td:hover {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .month {
-  font-size: 25px;
+  font-size: 18px;
 }
 
 .date {
   font-size: 16px;
+  margin-left: 5px;
 }
 
 ul {
@@ -34,6 +61,91 @@ ul {
   padding: 0px 5px 0px 20px;
 }
 
+.fas {
+  color: #17a2b8;
+}
+
 a {
   color: #17a2b8;
+}
+
+a:hover {
+  transition: 1.5s;
+  left: 0;
+  text-decoration: none;
+  color: white;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.btn {
+  outline: none;
+  color: black;
+  background-color: transparent;
+  box-shadow: 0 0 0 0;
+  margin: 3px;
+  text-decoration: none;
+}
+
+.clearfix {
+  margin: 15px;
+}
+
+.container{
+  width: 100%; 
+  display: inline-block; 
+}
+
+.right-col{
+	position: relative;
+	float: right;
+  left: 19%; 
+  width: 76%; 
+}
+
+.today{
+  background-color:#FFFAFA; 
+  border-radius: 10px; 
+  width: 23%;
+  height: 625px;
+  left: 20%; 
+	position: relative;
+  display: inline-block;
+}
+
+.display_day{
+  font-size: 23px; 
+  text-align: center;
+  margin-top: 25%; 
+  border-radius: 20px; 
+  border:2px solid teal; 
+  background-color: teal; 
+}
+
+.day_event{
+  font-size: 20px; 
+  text-align: center;
+}
+
+/* Events */
+.form {
+  margin: auto;
+}
+
+.form input,
+.form select,
+.form textarea {
+  border-radius: 5px;
+  border: 1px solid #17a2b8;
+  outline: none;
+  background: none;
+  padding: 5px;
+  width: 100%;
+  margin: 3px;
 }
