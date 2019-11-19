@@ -6,6 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
 from django.urls import reverse
 from django.utils.safestring import mark_safe
+import calendar
 
 from .models import *
 from .utils import Calendar
@@ -37,6 +38,14 @@ class CalendarView(generic.ListView):
         context['today'] = today
         return context
 
+def show_day(request, month, year, day):
+    month_int = list(calendar.month_name).index(month)
+    context = {
+        'day': day,
+        'events_for_day': Event.objects.filter(start_time__day=day, start_time__year=year, start_time__month=month_int)
+    }
+    print(context['events_for_day'])
+    return render(request, 'cal/show_day.html', context)
 
 def get_date(req_day):
     if req_day:

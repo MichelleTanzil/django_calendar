@@ -6,13 +6,13 @@
 }
 
 body{
-  background-color: #686868; 
+  background-color: #2f2e2e; 
 }
 
 .calendar {
   margin: auto;
   font-size: 13px;
-  background-color: #3b3a50;
+  background-color: #23232c;
   color: white;
   border-radius: 20px;
   display: inline-block;
@@ -24,6 +24,9 @@ body{
 
 .calendar td {
   border-radius: 20px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 .calendar th {
@@ -33,9 +36,9 @@ body{
 }
 
 .calendar td {
-  width: 15%;
+  width: 14%;
   height: 105px; 
-  padding: 20px 10px 0px 10px;
+  padding: 25px 10px 0px 10px;
   margin-left: 5px;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
@@ -99,22 +102,20 @@ a:hover {
 
 .container{
   width: 100%; 
-  display: inline-block; 
+  margin: auto;
 }
 
 .right-col{
 	position: relative;
 	float: right;
-  left: 19%; 
   width: 76%; 
 }
 
-.today{
+.left-col{
   background-color:#FFFAFA; 
   border-radius: 10px; 
-  width: 23%;
+  width: 22%;
   height: 625px;
-  left: 20%; 
 	position: relative;
   display: inline-block;
 }
@@ -148,4 +149,13 @@ a:hover {
   padding: 5px;
   width: 100%;
   margin: 3px;
+}
+
+
+.form{
+  width: 80%; 
+}
+
+.modal{
+  max-height: 100%;
 }

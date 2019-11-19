@@ -5,7 +5,10 @@ Event
 {% endblock %}
 
 {% block content %}
-<form method="post" action="/event/edit/{{event.id}}/">
+<div class="clearfix">
+  <a class="btn btn-info left" href="{% url 'cal:calendar' %}"> Back To Calendar </a>
+</div>
+<form method="post" action="/event/edit/{{event.id}}/" class="form">
   {% csrf_token %}
   {{ form }}
   <button type="submit" class="btn btn-info right"> Edit </button>
