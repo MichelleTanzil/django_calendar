@@ -5,7 +5,8 @@
     {%for event in events_for_day%}
     <p class="day_event">{{event.title}}</p>
     <p class="day_event">{{event.description}}</p>
-    <p class="day_event">{{event.start_time|date:'g:i A'}} - {{event.end_time|date:'g:i A'}}</p>
+    <p class="day_event">{{event.start_time|date:'M d g:i A'}} to </p>
+    <p class="day_event">{{event.end_time|date:'M d g:i A'}}</p>
     <hr>
     {%endfor%}
   </div>

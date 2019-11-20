@@ -36,6 +36,8 @@ class CalendarView(generic.ListView):
         today = date.today()
         context['events_for_today'] = Event.objects.filter(start_time__day=today.day)
         context['today'] = today
+        context['prev_month'] = prev_month(d)
+        context['next_month'] = next_month(d)
         return context
 
 def show_day(request, month, year, day):
@@ -72,9 +74,24 @@ def event(request, event_id=None):
         'event': instance,
     }
     return render(request, 'cal/edit_event.html', context)
+    
+def prev_month(d):
+    first = d.replace(day=1)
+    prev_month = first - timedelta(days=1)
+    month = 'month=' + str(prev_month.year) + '-' + str(prev_month.month)
+    return month
+
+def next_month(d):
+    days_in_month = calendar.monthrange(d.year, d.month)[1]
+    last = d.replace(day=days_in_month)
+    next_month = last + timedelta(days=1)
+    month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
+    return month
 
 def event_new(request):
-    Event.objects.create(title=request.POST['title'], description=request.POST['description'], start_time=request.POST['start_time'], end_time=request.POST['end_time'])
+    start_time = dt.strptime(request.POST['start_time'],"%Y-%m-%dT%H:%M")
+    end_time = dt.strptime(request.POST['end_time'],"%Y-%m-%dT%H:%M")
+    Event.objects.create(title=request.POST['title'], description=request.POST['description'], start_time=start_time, end_time=end_time, bg_color=request.POST['bg_color'])
     return redirect('/calendar')
 
 def event_edit(request, event_id):
@@ -83,6 +100,7 @@ def event_edit(request, event_id):
     event.description=request.POST['description']
     event.start_time=request.POST['start_time']
     event.end_time=request.POST['end_time']
+    event.bg_color=request.POST['bg_color']
     event.save()
     return redirect('/calendar')
 
