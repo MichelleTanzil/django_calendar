@@ -11,21 +11,13 @@ $(".close").click(function() {
 });
 
 $("td").click(function() {
-  console.log(
-    $(this)
-      .children(".date")
-      .text()
-  );
+  console.log($(this).children(".date").text());
   console.log($(".month").text());
-  string_array = $(".month")
-    .text()
-    .split(" ");
+  string_array = $(".month").text().split(" ");
   console.log(string_array);
   var month = string_array[0];
   var year = string_array[1];
-  var day = $(this)
-    .children(".date")
-    .text();
+  var day = $(this).children(".date").text();
 
   $.ajax({
     url: `/calendar/day/` + month + "/" + year + "/" + day,
@@ -37,11 +29,7 @@ $("td").click(function() {
 });
 
 $(".color-picker").click(function() {
-  console.log(
-    $(this)
-      .children(".color")
-      .attr("value")
-  );
+  console.log($(this).children(".color").attr("value"));
   var chosen_color = $(this)
     .children(".color")
     .attr("value");
@@ -98,22 +86,24 @@ $("select").change(function() {
   }
 });
 
-// Drag and Drop
-// $( function() {
-//   $( "ul, li" ).disableSelection();
-//   console.log("dragging")
-//   $( ".draggable" ).draggable({
-//     helper: "clone",
-//     revert:"invalid"
-//   })
-
-// } );
-
-// $( "#droppable" ).droppable({
-//   drop: function( event, ui ) {
-//     $(this).
-//   }
-// });
+// Yearly view - clicking month
+$("img").mouseover(function(){
+  
+  $(this).parent(".month-specs").css("opacity", "1.0")
+}).mouseout(function(){
+  if ($(this).is('.activeImage')) return;
+  $(this).parent(".month-specs").css("opacity", "0.3")
+})
+$("img").click(function() {
+  month = $(this).attr("data-alt");
+  $("#yearly_view_month").attr("value", month);
+  $("img").css("border", "none")
+  $("img").parent(".month-specs").css("opacity", "0.3")
+  $(this).css("border", "5px solid slategray")
+  $(this).parent(".month-specs").css("opacity", "1.0")
+  $(this).addClass('activeImage');
+  return false;
+});
 
 //Dark and light mode
 const toggleSwitch = document.querySelector(
@@ -124,9 +114,27 @@ function switchTheme(e) {
   if (e.target.checked) {
     document.documentElement.setAttribute("data-theme", "dark");
     localStorage.setItem("theme", "dark"); //add this
+    console.log("dark theme activated");
+    $("img").each(function(){
+      var srcOne = $(this).attr("src");
+      var srcTwo = $(this).attr("data-alt-src");
+
+      $(this).attr("src", srcTwo);
+      $(this).attr("data-alt-src", srcOne);
+    })
+
+
   } else {
     document.documentElement.setAttribute("data-theme", "light");
     localStorage.setItem("theme", "light"); //add this
+    console.log("light theme activated");
+    $("img").each(function(){
+      var srcOne = $(this).attr("src");
+      var srcTwo = $(this).attr("data-alt-src");
+
+      $(this).attr("src", srcTwo);
+      $(this).attr("data-alt-src", srcOne);
+    })
   }
 }
 

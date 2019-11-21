@@ -3,8 +3,11 @@
 {% block content %}
 
 <div class="clearfix">
-
 	<a class="btn btn-info" id="left" href="{% url 'cal:calendar' %}?{{ prev_month }}"> Previous Month </a>
+	<form action="/calendar/" method="GET" id="calendar-form">
+    {%csrf_token%}
+    <button type="submit" class="btn btn-info">{{today |date:'M Y'}}</button>
+  </form>
 	<a class="btn btn-info right" href="{% url 'cal:calendar' %}?{{ next_month }}"> Next Month </a>
 </div>
 <div class="theme-switch-wrapper">
@@ -14,6 +17,10 @@
 	<!-- <div id="droppable">
 		<i class="far fa-trash-alt fa-3x"></i>
 	</div> -->
+	<form action="/calendar/yearly_view/" method="GET">
+	{%csrf_token%}
+	<button type="submit" class="btn btn-info">Yearly View</button>
+	</form>
 	<label class="theme-switch" for="checkbox">
 		<input type="checkbox" id="checkbox"/>
 		<div class="slider-dark round"></div>

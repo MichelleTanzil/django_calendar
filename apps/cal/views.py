@@ -99,3 +99,15 @@ def event_delete(request, event_id):
     event = Event.objects.get(id=event_id)
     event.delete()
     return redirect('/calendar')
+
+
+def yearly_view(request):
+    context={
+        'today': date.today()
+    }
+    return render (request, 'cal/yearly_view.html', context)
+
+def change_view(request):
+    month = request.POST['month']
+    year = request.POST['year']
+    return redirect(f"/calendar/?month={year}-{month}")
