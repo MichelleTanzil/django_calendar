@@ -3,11 +3,21 @@
 {% block content %}
 
 <div class="clearfix">
-	<div class="btn btn-info right">
-		<i class="fas fa-plus"><a role="button" data-target="#myModal" id="myModal"> New Event</a></i>
-	</div>
+
 	<a class="btn btn-info" id="left" href="{% url 'cal:calendar' %}?{{ prev_month }}"> Previous Month </a>
 	<a class="btn btn-info right" href="{% url 'cal:calendar' %}?{{ next_month }}"> Next Month </a>
+</div>
+<div class="theme-switch-wrapper">
+	<div class="btn btn-info" id="add-event">
+		<i class="fas fa-plus"><a role="button" data-target="#myModal" id="myModal"> New Event</a></i>
+	</div>
+	<!-- <div id="droppable">
+		<i class="far fa-trash-alt fa-3x"></i>
+	</div> -->
+	<label class="theme-switch" for="checkbox">
+		<input type="checkbox" id="checkbox"/>
+		<div class="slider-dark round"></div>
+	</label>
 </div>
 <div class="wrapper">
 	<div class="left-col">
@@ -27,8 +37,8 @@
 	</div>
 </div>
 
-<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-	aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -39,14 +49,6 @@
 			</div>
 
 			<div class="modal-body">
-				{% csrf_token %}
-				{% if messages %}
-				<ul class="messages">
-					{% for message in messages %}
-					<li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-					{% endfor %}
-				</ul>
-				{% endif %}
 				<form method="post" action="/event/new/">
 					{% csrf_token %}
 					<div class="form-group">

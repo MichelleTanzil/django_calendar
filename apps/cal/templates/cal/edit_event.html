@@ -1,37 +1,49 @@
 {% extends 'cal/base.html' %}
 
+{% block title %}
+Event
+{% endblock %}
+
 {% block content %}
 <div class="clearfix">
   <a class="btn btn-info left" href="{% url 'cal:calendar' %}"> Back To Calendar </a>
+<div class="theme-switch-wrapper">
+	<label class="theme-switch" for="checkbox">
+		<input type="checkbox" id="checkbox" />
+		<div class="slider-dark round"></div>
+	</label>
 </div>
-{% csrf_token %}
-{% if messages %}
-<ul class="messages">
-  {% for message in messages %}
-  <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-  {% endfor %}
-</ul>
+</div>
+{% if form.errors %}
+{% for field in form %}
+{% for error in field.errors %}
+<div class="alert alert-danger">
+  {{ field.label }} <strong>{{ error|escape }}</strong>
+</div>
+{% endfor %}
+{% endfor %}
+{% for error in form.non_field_errors %}
+<div class="alert alert-danger">
+  {{ field.label }} <strong>{{ error|escape }}</strong>
+</div>
+{% endfor %}
 {% endif %}
+
 <form method="post" action="/event/edit/{{event.id}}/" class="form">
   {% csrf_token %}
-    <div class="form-group">
-      <label for="title">Title: </label>
-      <input type="text" class="form-control" name="title" value={{event.title}}>
-    </div>
-    <div class="form-group">
-      <label for="description">Description: </label>
-      <textarea name="description" cols="5" rows="5">{{event.description}}</textarea>
-    </div>
-    <div class="form-group">
-      <label for="start_time">Start Time: </label>
-      <input type="datetime-local" class="form-control" name="start_time" value={{event.start_time}}>
-    </div>
-    <div class="form-group">
-      <label for="end_time">End Time: </label>
-      <input type="datetime-local" class="form-control" name="end_time" value={{event.end_time}}>
-    </div>
+  <p class="muted-color">Title:</p>
+  {{form.title}}
+  <p class="muted-color">Description: </p>
+  {{form.description}}
+  <p class="muted-color">Start Time: </p>
+  {{form.start_time}}
+  <p class="muted-color">End Time: </p>
+  {{form.end_time}}
+
   <div class="form-group">
     <p>Choose a color category for this event: </p>
+    {{form.bg_color}}
+    <br>
     <div class="color-picker" style="background: #5549A3;">
       <input type="hidden" value="#5549A3" class="color">
     </div>
@@ -44,7 +56,7 @@
     <div class="color-picker" style="background: #940D23;">
       <input type="hidden" value="#940D23" class="color">
     </div>
-    <div class="color-picker" style="background: #179213;">
+    <div class="color-picker" style="background: #10750c;">
       <input type="hidden" value="#179213" class="color">
     </div>
     <input type="hidden" id="bg_color" name="bg_color" value="">

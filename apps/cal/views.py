@@ -57,6 +57,7 @@ def get_date(req_day):
 
 
 def event(request, event_id=None):
+    print(request.POST)
     instance = Event()
     if event_id:
         instance = get_object_or_404(Event, pk=event_id)
@@ -74,7 +75,7 @@ def event(request, event_id=None):
         'event': instance,
     }
     return render(request, 'cal/edit_event.html', context)
-    
+
 def prev_month(d):
     first = d.replace(day=1)
     prev_month = first - timedelta(days=1)
@@ -92,16 +93,6 @@ def event_new(request):
     start_time = dt.strptime(request.POST['start_time'],"%Y-%m-%dT%H:%M")
     end_time = dt.strptime(request.POST['end_time'],"%Y-%m-%dT%H:%M")
     Event.objects.create(title=request.POST['title'], description=request.POST['description'], start_time=start_time, end_time=end_time, bg_color=request.POST['bg_color'])
-    return redirect('/calendar')
-
-def event_edit(request, event_id):
-    event = Event.objects.get(id=event_id)
-    event.title=request.POST['title']
-    event.description=request.POST['description']
-    event.start_time=request.POST['start_time']
-    event.end_time=request.POST['end_time']
-    event.bg_color=request.POST['bg_color']
-    event.save()
     return redirect('/calendar')
 
 def event_delete(request, event_id):
