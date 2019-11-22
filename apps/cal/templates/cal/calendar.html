@@ -6,7 +6,7 @@
 	<a class="btn btn-info" id="left" href="{% url 'cal:calendar' %}?{{ prev_month }}"> Previous Month </a>
 	<form action="/calendar/" method="GET" id="calendar-form">
     {%csrf_token%}
-    <button type="submit" class="btn btn-info">{{today |date:'M Y'}}</button>
+    <button type="submit" class="btn btn-info">Home</button>
   </form>
 	<a class="btn btn-info right" href="{% url 'cal:calendar' %}?{{ next_month }}"> Next Month </a>
 </div>
