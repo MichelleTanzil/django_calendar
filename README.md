@@ -10,6 +10,8 @@ This was my first ever project that I created while during my time in Coding Doj
 
 ## Features
 
+### Completion Date: October 2019
+
 - Sidebar of day's events (defaults to today)
 - Monthly view of events -> Click on each day to change the sidebar view of the day's events
 - CRUD of events in the calendar
@@ -21,14 +23,14 @@ This was my first ever project that I created while during my time in Coding Doj
 
 Clone the repo:
 
-- `git clone https://github.com/MichelleTanzil/django_calendar.git`
-- `cd django_calendar`
+- Run command: `git clone https://github.com/MichelleTanzil/django_calendar.git`
+- Run command:`cd django_calendar`
 
 Install python and django
 
 - Download [python](https://www.python.org/downloads/)
-- `pip3 install django`
-- `pip install django-colorfield`
+- Run command:`pip3 install django`
+- Run command:`pip install django-colorfield`
 
 Running the application:
 
