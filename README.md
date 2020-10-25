@@ -37,15 +37,13 @@ Running the application:
 - Run command:`python3 manage.py migrate`
 - Run command:`python3 manage.py runserver`
 
-The application is now running on localhost:8000
+The application is now running on [localhost:8000](http://localhost:8000/)
 
 ## Comments from the dev
 
 Because this is my first ever project, I'm aware of that the code, design, structure etc. was not ideal and there will probably not be any changes to it. However, I believe it shows my potential after only 6 weeks of software development training.
 
 This project is dear to me as this is first project where I wanted to explore how far I can learn and build within 5 days of dedicated time on it.
-
-### Completion Date: October 2019
 
 ## Credits
 
