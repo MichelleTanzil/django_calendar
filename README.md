@@ -34,8 +34,8 @@ Install python and django
 
 Running the application:
 
-- `python3 manage.py migrate`
-- `python3 manage.py runserver`
+- Run command:`python3 manage.py migrate`
+- Run command:`python3 manage.py runserver`
 
 The application is now running on localhost:8000
 
